@@ -1,6 +1,8 @@
 <?php
+
 require_once "classAutoLoad.php";
 $layout->header($conf);
 print $hello->today();
-$form->signup();
+$form->login();
+
 $layout->footer($conf);

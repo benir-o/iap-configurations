@@ -1,6 +1,6 @@
 <?php
 
-class HelloWorld
+class classes
 {
     public function greet()
     {
@@ -8,6 +8,6 @@ class HelloWorld
     }
     public function today()
     {
-        return "<p>Today is " . date("1") . "</p>";
+        return "<p>Today is " . date("l") . "</p>";
     }
 }
