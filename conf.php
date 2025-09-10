@@ -8,7 +8,7 @@ $conf['admin_email'] = 'admin@icsccommunity.com';
 $conf['db_type'] = 'pdo';
 $conf['db_host'] = 'localhost';
 $conf['db_user'] = 'root';
-$conf['db_pass'] = '';
+$conf['db_pass'] = 'ManCity@254';
 $conf['db_name'] = 'nol';
 
 // Site Language
