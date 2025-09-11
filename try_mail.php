@@ -3,7 +3,7 @@
 require_once 'classAutoLoad.php';
 $mailCnt = [
     'name_from' => 'Benir Omenda',
-    'email_from' => 'no-reply@icsccommunity.com',
+    'email_from' => 'benir.omenda@strathmore.edu',
     'name_to' => 'Nir Odeny',
     'email_to' => 'beniromenda@gmail.com',
     'subject' => 'IAP Week 2 email',
