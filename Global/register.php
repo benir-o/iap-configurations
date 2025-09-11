@@ -1,14 +1,15 @@
 <?php
-require 'basedata.php';
+
 require_once '../classAutoLoad.php'; // Include the autoloader
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    global $conf, $ObjSendMail; // Access global configuration and mail object
+    global $conf, $ObjSendMail, $mailCnt, $conn; // Access global configuration and mail object
 
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    //$verification_token = bin2hex(random_bytes(50));
+    $verification_token = bin2hex(random_bytes(50));
 
     //Insert the user into the database
     $stmt = $conn->prepare("INSERT INTO users (name,email,password) VALUES (?,?,?)");
@@ -18,17 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //We would like to send a verification email
     if ($stmt->execute()) {
         $subject = "Verify your email";
-        $verification_link = "http://localhost/iap-configurations/Global/verify.php?token=$verification_token"; // Assuming a verify.php exists
+        $verification_link = "http://localhost/iap-configurations/Global/register.php?token=$verification_token"; // Assuming a verify.php exists
         $message = "Click this link to verify your account: <a href='$verification_link'>$verification_link</a>";
 
-        $mailCnt = [
-            'name_from' => 'Benir Omenda',
-            'email_from' => 'benir.omenda@strathmore.edu',
-            'name_to' => 'Nir Odeny',
-            'email_to' => 'beniromenda@gmail.com',
-            'subject' => 'Verify your account',
-            'body' => 'Succesfully Registered your account'
-        ];
 
         $ObjSendMail->send_Mail($conf, $mailCnt);
 
@@ -37,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $stmt->error;
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h2>User Registration</h2>
 
-    <!-- Show messages -->
+    <!--Show messages -->
     <?php if (!empty($success)) echo "<p style='color:green;'>$success</p>"; ?>
     <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
 

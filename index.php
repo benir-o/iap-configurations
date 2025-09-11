@@ -3,6 +3,6 @@
 require_once "classAutoLoad.php";
 $layout->header($conf);
 
-$form->login();
+$form->signup();
 
 $layout->footer($conf);

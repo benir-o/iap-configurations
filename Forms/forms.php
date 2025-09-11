@@ -5,15 +5,16 @@ class forms
     {
 ?>
 
-        <form method="post" action="">
+        <form method="post" action="/iap-configurations/Global/register.php">
             <label for="username">Username: </label>
-            <input type="text" id="username" placeholder="John Smith">
+            <input type="text" id="username" placeholder="John Smith" name="username">
             <br>
             <label for="email">Email: </label>
-            <input type="email" id="email" required>
+            <input type="email" id="email" required name="email">
             <br>
             <label for="password">Password: </label>
-            <input type="password" id="password">
+            <input type="password" id="password" name="password">
+            <button type="submit">Register</button>
         </form>
         <br>
 
