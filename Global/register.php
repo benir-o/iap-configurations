@@ -6,7 +6,7 @@ require_once '../classAutoLoad.php'; // Include the autoloader
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     global $conf, $ObjSendMail, $mailCnt, $conn; // Access global configuration and mail object
 
-    $name = $_POST['name'];
+    $name = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $verification_token = bin2hex(random_bytes(50));
@@ -30,34 +30,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $stmt->error;
     }
 }
-?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Sign Up</title>
-</head>
-
-<body>
-    <h2>User Registration</h2>
-
-    <!--Show messages -->
-    <?php if (!empty($success)) echo "<p style='color:green;'>$success</p>"; ?>
-    <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-
-    <!-- Signup form -->
-    <form action="" method="POST">
-        <label>Name:</label><br>
-        <input type="text" name="name" required><br><br>
-
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
-
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
-
-        <button type="submit">Register</button>
-    </form>
-</body>
-
-</html>
