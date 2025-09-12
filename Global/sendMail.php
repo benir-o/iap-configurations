@@ -13,10 +13,6 @@ class sendMail
 {
     public function send_Mail($conf, $mailCnt)
     {
-        //Load Composer's autoloader (created by composer, not included with PHPMailer)
-
-
-        //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
         try {
