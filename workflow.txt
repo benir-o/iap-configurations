@@ -1,0 +1,26 @@
+PS C:\Apache24\htdocs\iap-configurations> git rm --cached conf.php
+rm 'conf.php'
+PS C:\Apache24\htdocs\iap-configurations> git rm --cached classAutLoad.php
+fatal: pathspec 'classAutLoad.php' did not match any files
+PS C:\Apache24\htdocs\iap-configurations> git rm --cached classAutoLoad.php
+rm 'classAutoLoad.php'
+PS C:\Apache24\htdocs\iap-configurations> 
+ *  History restored 
+
+PS C:\Apache24\htdocs\iap-configurations> 
+ *  History restored 
+
+PS C:\Apache24\htdocs\iap-configurations> git add . 
+PS C:\Apache24\htdocs\iap-configurations> git commit -m "Return a list of database users while sending emails to those who log in"
+[main 8422ba8] Return a list of database users while sending emails to those who log in
+ 1 file changed, 4 deletions(-)
+PS C:\Apache24\htdocs\iap-configurations> git push origin main
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 411 bytes | 411.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/benir-o/iap-configurations.git
+   49c8a4b..8422ba8  main -> main
