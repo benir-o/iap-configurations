@@ -32,19 +32,19 @@ class sendMail
 
             //Recipients
             $mail->setFrom($mailCnt['email_from'], $mailCnt['name_from']);
-            $mail->addAddress($mailCnt['email_to'], $mailCnt['name_to']);
+            $mail->addAddress($GLOBALS['user_data']['email'], $GLOBALS['user_data']['name']);
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $mailCnt['subject'];
-            $mail->Body    = $mailCnt['body'];
+            $mail->Body    = 'Hello ' . $GLOBALS['user_data']['name'] . ", Welcome to Benir's Application";
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
-            //echo 'Message has been sent';
+            return true; // Message has been sent
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+            return false; // Indicate failure
         }
-        return "<h1>Hello, ICS C Community</h1>";
     }
 }
