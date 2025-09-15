@@ -1,8 +1,13 @@
 <?php
 
 require_once "classAutoLoad.php";
-$layout->header($conf);
+$layout->page_metadata();
+?>
 
-$form->signup();
-
-$layout->footer($conf);
+<body><?php
+        $layout->header($conf);
+        $form->signup();
+        $layout->footer($conf);
+        ?>
+</body>
+<?php
