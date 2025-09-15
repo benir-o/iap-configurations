@@ -6,26 +6,36 @@ class forms
 ?>
 
         <form method="post" action="/iap-configurations/Global/register.php">
-            <div class="container-md bg-light rounded-4 p-4 my-5 shadow">
-                <label for="username">Username:</label>
-                <input type="text" id="username" class="form-control" placeholder="John Smith" aria-label="Username" aria-describedby="basic-addon1">
-                <!--<input type="text" id="username" placeholder="John Smith" name="username">-->
-                <br>
-                <label for="email">Email: </label>
-                <input type="text" id="email" class="form-control" required aria-label="Username" aria-describedby="basic-addon1">
-                <!--<input type="email" id="email" required name="email">-->
-                <br>
-                <label for="password">Password: </label>
-                <input type="text" id="password" class="form-control" required aria-label="Username" aria-describedby="basic-addon1">
-                <br>
-                <!--<input type="password" id="password" name="password">-->
-
-                <button type="button" class="btn btn-primary">Register</button>
+            <div class="container-sm mb3-custom">
+                <div class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" class="form-control" placeholder="John Smith" aria-label="Username" aria-describedby="basic-addon1">
+                    <!--<input type="text" id="username" placeholder="John Smith" name="username">-->
+                </div>
+                <div class="mb-3">
+                    <label for="email">Email: </label>
+                    <input type="text" id="email" class="form-control" required aria-label="Username" aria-describedby="basic-addon1">
+                    <!--<input type="email" id="email" required name="email">-->
+                </div>
+                <div class="mb-3">
+                    <label for="password">Password: </label>
+                    <input type="text" id="password" class="form-control" required aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="mb-3">
+                    <?php $this->submit_button("Sign Up", "signup"); ?> <a href="signin.php">Already have an account? Log in</a>
+                </div>
             </div>
+            <!--<input type="password" id="password" name="password">-->
         </form>
-        <br>
 
-    <?Php
+    <?php
+    }
+
+    private function submit_button($value, $name)
+    {
+    ?>
+        <button type="submit" class="btn btn-primary" name="<?php echo $name; ?>" value="<?php echo $value; ?>"><?php echo $value; ?></button>
+    <?php
     }
     public function login()
     {

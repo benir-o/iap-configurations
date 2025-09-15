@@ -3,3 +3,9 @@
             border: 1px solid var(--bs-border-color);
             color: var(--bs-emphasis-color);
 }
+.mb3-custom {
+    background-color: #42ebfe;
+    border: 2px solid #4ca6ff;
+    padding: 20px;
+    border-radius: 8px;
+}
