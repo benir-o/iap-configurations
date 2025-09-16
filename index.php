@@ -6,7 +6,8 @@ $layout->page_metadata();
 
 <body><?php
         $layout->header($conf);
-        $form->signup();
+        $layout->body();
+        //$form->signup();
         $layout->footer($conf);
         ?>
 </body>
