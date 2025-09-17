@@ -32,9 +32,9 @@ class Layouts
                             <a class="navbar-brand" href="./"><?php echo $conf['site_name']; ?></a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
                             <div class="collapse navbar-collapse" id="navbarsExample05">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item"> <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'index.php') echo 'active'; ?>" aria-current="page" href="/iap-configurations/index.php">Home</a> </li>
-                                    <li class="nav-item"> <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'signup.php') echo 'active'; ?>" href="/iap-configurations/Forms/signup.php">Sign Up</a> </li>
-                                    <li class="nav-item"> <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'signin.php') echo 'active'; ?>" href="/iap-configurations/Forms/signin.php">Sign In</a> </li>
+                                    <li class="nav-item"> <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'index.php') echo 'active'; ?>" aria-current="page" href="/iap-configurations/index.php" id="home-nav-link">Home</a> </li>
+                                    <li class="nav-item"> <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'signup.php') echo 'active'; ?>" href="/iap-configurations/Forms/signup.php" id="signup-link">Sign Up</a> </li>
+                                    <li class="nav-item"> <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'signin.php') echo 'active'; ?>" href="/iap-configurations/Forms/signin.php" id="signin-link">Sign In</a> </li>
                                 </ul>
                                 <form role="search"> <input class="form-control" type="search" placeholder="Search" aria-label="Search"> </form>
                             </div>
@@ -54,7 +54,7 @@ class Layouts
                     </div>
                 <?php
             }
-            public function content($conf)
+            public function content()
             {
                 ?>
 
@@ -63,7 +63,7 @@ class Layouts
                             <div class="h-100 p-5 text-bg-dark rounded-3">
                                 <h2>Change the background</h2>
                                 <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-                                <button class="btn btn-outline-light" type="button">Example button</button>
+
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -74,6 +74,26 @@ class Layouts
                             </div>
                         </div>
                     </div>
+                <?php
+            }
+            public function formContent()
+            {
+                ?>
+                    <div class="row align-items-md-stretch">
+                        <div class="col-md-6">
+                            <div class="h-100 p-5 text-bg-dark rounded-3" id="signup">
+                                <?php
+                                $signForm = new forms();
+                                if (basename($_SERVER['PHP_SELF']) == 'signup.php') {
+                                    $signForm->signup();
+                                } elseif (basename($_SERVER['PHP_SELF'] == 'signin.php')) {
+                                    $signForm->login();
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
                 <?php
             }
 

@@ -35,21 +35,30 @@ class forms
     private function submit_button($value, $name)
     {
     ?>
-        <button type="submit" class="btn btn-primary" name="<?php echo $name; ?>" value="<?php echo $value; ?>"><?php echo $value ?></button>
+        <button type="submit" class="btn btn-outline-light" name="<?php echo $name; ?>" value="<?php echo $value; ?>"><?php echo $value ?></button>
     <?php
     }
     public function login()
     {
     ?>
         <form method="post" action="">
-            <label for="username">Username: </label>
-            <input type="text" id="username">
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" required>
-            <br>
-            <input type="submit" value="log in"><a href="./">Don't have an account? Sign up</a>
+            <div class="container-fluid">
+                <div class="mb-3">
+                    <label for="username">Username: </label>
+                    <input type="text" id="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password">Password:</label>
+                    <input type="password" required>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="log in"><a href="./">Don't have an account? Sign up</a>
+                </div>
+
         </form>
+
+        </div>
+
 <?php
     }
 }
