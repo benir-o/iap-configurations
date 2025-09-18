@@ -84,11 +84,7 @@ class Layouts
                             <div class="h-100 p-5 text-bg-dark rounded-3" id="signup">
                                 <?php
                                 $signForm = new forms();
-                                if (basename($_SERVER['PHP_SELF']) == 'signup.php') {
-                                    $signForm->signup();
-                                } elseif (basename($_SERVER['PHP_SELF'] == 'signin.php')) {
-                                    $signForm->login();
-                                }
+                                $signForm->signup();
                                 ?>
                             </div>
                         </div>
