@@ -36,9 +36,16 @@ class databaseOperations
     public function displayUsers()
     {
         global $conn;
+        $username = $_GET['username'];
+        $user_password = $_GET['password'];
+        $GLOBALS['user_data_retrieval'] = array(
+            'name' => $username,
+            'password' => $user_password
+        );
 
         try {
-            $stmt = $conn->prepare("SELECT username, email FROM users");
+            $stmt = $conn->prepare("SELECT username, email FROM users WHERE username=? AND user_password=?");
+            $stmt->bind_param('ss', $username, $user_password);
             $stmt->execute();
             $result = $stmt->get_result();
 
@@ -59,7 +66,7 @@ class databaseOperations
                 echo "</tbody>";
                 echo "</table>";
             } else {
-                echo "<p>No users found.</p>";
+                echo "<script>alert('Invalid username or Password')</script>";
             }
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();

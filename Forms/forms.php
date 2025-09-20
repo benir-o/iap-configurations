@@ -43,17 +43,17 @@ class forms
     public function login()
     {
     ?>
-        <form method="post" action="">
+        <form method="get" action="/iap-configurations/Global/validateForm.php" id="signin">
             <div class="container-fluid">
                 <h2>Sign in</h2>
                 <p>Glad to see you back.</p>
                 <div class="mb-3">
                     <label for="username">Username: </label>
-                    <input type="text" id="username" class="form-control">
+                    <input type="text" id="username" name="username" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="password">Password:</label>
-                    <input type="password" required class="form-control">
+                    <input type="password" name="password" required class="form-control">
                 </div>
                 <!--<div class="mb-3">
                     <input type="submit" value="log in"><a href="#signUp">Don't have an account? Sign up</a>
