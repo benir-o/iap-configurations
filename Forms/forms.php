@@ -11,13 +11,11 @@ class forms
                 <p>Sign Up to make online purchases, view books and make reservations</p>
                 <div class="mb-3">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="John Smith" aria-label="Username" aria-describedby="basic-addon1">
-                    <!--<input type="text" id="username" placeholder="John Smith" name="username">-->
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Wesley Ogam" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div class="mb-3">
                     <label for="email">Email: </label>
                     <input type="text" id="email" name="email" class="form-control" required aria-label="Username" aria-describedby="basic-addon1">
-                    <!--<input type="email" id="email" required name="email">-->
                 </div>
                 <div class="mb-3">
                     <label for="password">Password: </label>
@@ -27,7 +25,6 @@ class forms
                     <?php $this->submit_button("Sign Up", "signup"); ?> <a href="#">Already have an account? Log in</a>
                 </div>
             </div>
-
         </form>
 
 

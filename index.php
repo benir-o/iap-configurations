@@ -6,4 +6,4 @@ $layout->nav($conf);
 $layout->banner($conf);
 $layout->content();
 //$form->signup();
-$layout->footer($conf);
+//$layout->footer($conf);

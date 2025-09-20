@@ -1,14 +1,13 @@
 <?php
 
-//require_once '../classAutoLoad.php'; // Include the autoloader
-
 class databaseOperations
 {
+
 
     public function databaseinsertion()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            global $conf, $ObjSendMail, $mailCnt, $conn; // Access global configuration and mail object
+            global $conf, $ObjSendMail, $mailCnt, $conn, $layout; // Access global configuration and mail object
 
             $username = $_POST['username'];
             $email = $_POST['email'];
@@ -26,6 +25,7 @@ class databaseOperations
             //We would like to send a verification email
             if ($stmt->execute()) {
                 $ObjSendMail->send_Mail($conf, $mailCnt);
+                $layout->homePageContent($GLOBALS['user_data']['name']);
                 echo "Registration successful, check your email to verify";
             } else {
                 echo "Error: " . $stmt->error;
@@ -50,26 +50,33 @@ class databaseOperations
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                echo "<table border='1' style='border-collapse: collapse; width: 100%;'>";
-                echo "<thead>";
-                echo "<tr><th>Username</th><th>Email</th></tr>";
-                echo "</thead>";
-                echo "<tbody>";
+                // echo "<table border='1' style='border-collapse: collapse; width: 100%;'>";
+                // echo "<thead>";
+                // echo "<tr><th>Username</th><th>Email</th></tr>";
+                // echo "</thead>";
+                // echo "<tbody>";
+                $this->showHomepage();
+                // while ($row = $result->fetch_assoc()) {
+                //     echo "<tr>";
+                //     echo "<td>" . htmlspecialchars($row['username'] ?? '') . "</td>";
+                //     echo "<td>" . htmlspecialchars($row['email'] ?? '') . "</td>";
+                //     echo "</tr>";
+                // }
 
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['username'] ?? '') . "</td>";
-                    echo "<td>" . htmlspecialchars($row['email'] ?? '') . "</td>";
-                    echo "</tr>";
-                }
-
-                echo "</tbody>";
-                echo "</table>";
+                // echo "</tbody>";
+                // echo "</table>";
             } else {
                 echo "<script>alert('Invalid username or Password')</script>";
             }
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
+    }
+    public function showHomePage()
+    {
+        global $conf;
+        $layout = new Layouts();
+        $layout->header($conf);
+        $layout->homePageContent($GLOBALS['user_data_retrieval']['name']);
     }
 }
