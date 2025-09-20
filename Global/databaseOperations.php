@@ -72,7 +72,7 @@ class databaseOperations
             echo "Error: " . $e->getMessage();
         }
     }
-    public function showHomePage()
+    private function showHomePage()
     {
         global $conf;
         $layout = new Layouts();

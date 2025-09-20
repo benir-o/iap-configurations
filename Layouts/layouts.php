@@ -398,6 +398,7 @@ class Layouts
                                 </div>
                             </div>
                         </div>
+
                     </section>
 
                 <?
