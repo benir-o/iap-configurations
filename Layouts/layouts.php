@@ -37,6 +37,7 @@ class Layouts
             {
 
 
+
                 ?>
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fifth navbar example">
                         <div class="container-fluid">
@@ -53,7 +54,7 @@ class Layouts
                                         <a class="nav-link " href="?action=signup" id="signup-link">Sign up</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="/iap-configurations/Layouts/Pages.php" id="browsebooks">Browse books</a>
+                                        <a class="nav-link " href="/iap-configurations/Layouts/pagesDisplay.php" id="browsebooks">Browse books</a>
                                     </li>
                                 </ul>
                                 <form role="search"> <input class="form-control" type="search" placeholder="Search" aria-label="Search"> </form>
@@ -61,6 +62,13 @@ class Layouts
                         </div>
                     </nav>
                 <?php
+            }
+            public function displayBooksPage()
+            {
+                switch ($this->action) {
+                    case "books":
+                        $this->page->bookViewing();
+                }
             }
             public function banner($conf)
             {
@@ -76,6 +84,7 @@ class Layouts
             }
             public function content()
             {
+                $this->displayBooksPage();
                 ?>
                     <div class="row align-items-md-stretch">
                         <div class="col-md-6">

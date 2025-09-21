@@ -15,7 +15,7 @@ class Pages
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#home">Home</a>
+                            <a class="nav-link active" href="/iap-configurations/index.php">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#books">Books</a>
