@@ -2,7 +2,15 @@
 
 class Layouts
 {
-    function __construct() {}
+
+    private $action;
+    private $page;
+    function __construct()
+    {
+        $this->page = new Pages();
+        $this->action = isset($_GET['action']) ? $_GET['action'] : 'home';
+    }
+
     public function header($conf)
     {
 ?>
@@ -27,14 +35,26 @@ class Layouts
             }
             public function nav($conf)
             {
+
+
                 ?>
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fifth navbar example">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="./"><?php echo $conf['site_name']; ?></a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
                             <div class="collapse navbar-collapse" id="navbarsExample05">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item"> <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'index.php') echo 'active'; ?>" aria-current="page" href="/iap-configurations/index.php" id="home-nav-link">Home</a> </li>
-                                    <li class="nav-item"> <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'signin.php') echo 'active'; ?>" href="/iap-configurations/Forms/signin.php" id="signin-link">Sign In</a> </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" aria-current="page" href="index.php" id="home-nav-link">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="?action=signin" id="signin-link">Sign in</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="?action=signup" id="signup-link">Sign up</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="/iap-configurations/Layouts/Pages.php" id="browsebooks">Browse books</a>
+                                    </li>
                                 </ul>
                                 <form role="search"> <input class="form-control" type="search" placeholder="Search" aria-label="Search"> </form>
                             </div>
@@ -48,7 +68,7 @@ class Layouts
                     <div class="p-1 mb-4 bg-body-tertiary rounded-3">
                         <div class="container-fluid py-1">
                             <h1 class="display-5 fw-bold">Welcome to <?php echo $conf['site_name']; ?></h1>
-                            <p class="col-md-8 fs-4">Check out the examples below for how you can remix and restyle it to your liking.</p>
+                            <p class="col-md-8 fs-4">We're fostering a unique reading culture, bringing together everyone's spark.</p>
                             <button class="btn btn-primary btn-lg" type="button">Join now</button>
                         </div>
                     </div>
@@ -57,14 +77,25 @@ class Layouts
             public function content()
             {
                 ?>
-
                     <div class="row align-items-md-stretch">
                         <div class="col-md-6">
                             <div class="h-100 p-5 text-bg-dark rounded-3">
 
                                 <?php
                                 $signForm = new forms();
-                                $signForm->signup();
+                                switch ($this->action) {
+                                    case "signin":
+                                        $signForm->login();
+                                        break;
+                                    case "signup":
+                                        $signForm->signup();
+                                        break;
+                                    default:
+                                        $signForm->login();
+                                }
+
+
+
                                 ?>
                             </div>
                         </div>
@@ -84,6 +115,7 @@ class Layouts
             public function homePageContent($username)
             {
                 ?>
+
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                         <div class="container">
                             <a class="navbar-brand fw-bold fs-4" href="#">
@@ -397,9 +429,11 @@ class Layouts
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                     </section>
+
 
                 <?
             }
