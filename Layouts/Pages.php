@@ -107,7 +107,7 @@ class Pages
                     <!-- Book 1 -->
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="card h-100 border-0 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop" class="card-img-top book-cover rounded-3" alt="Book Cover">
+                            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=300&h=400&fit=crop" class="card-img-top book-cover rounded-3" alt="Book Cover">
                             <div class="card-body d-flex flex-column">
                                 <h6 class="card-title fw-bold">The Silent Patient</h6>
                                 <p class="text-muted small mb-2">Alex Michaelides</p>
@@ -131,7 +131,7 @@ class Pages
                     <!-- Book 2 -->
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="card h-100 border-0 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop" class="card-img-top book-cover rounded-3" alt="Book Cover">
+                            <img src="https://images.unsplash.com/photo-1613520761471-8d5f28e343c0?w=300&h=400&fit=crop" class="card-img-top book-cover rounded-3" alt="Book Cover">
                             <div class="card-body d-flex flex-column">
                                 <h6 class="card-title fw-bold">Atomic Habits</h6>
                                 <p class="text-muted small mb-2">James Clear</p>
@@ -321,6 +321,34 @@ class Pages
 
         </section>
 
+    <?php
+    }
+    public function makebook($bookimage, $bookName, $bookAuthor)
+    {
+    ?>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop" class="card-img-top book-cover rounded-3" alt="Book Cover">
+                <div class="card-body d-flex flex-column">
+                    <h6 class="card-title fw-bold">The Silent Patient</h6>
+                    <p class="text-muted small mb-2">Alex Michaelides</p>
+                    <div class="text-warning mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <span class="ms-1 text-muted">4.2</span>
+                    </div>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                        <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$14.99</span>
+                        <button class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-cart-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 <?php
     }
 }

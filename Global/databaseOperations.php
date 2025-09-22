@@ -25,6 +25,7 @@ class databaseOperations
             //We would like to send a verification email
             if ($stmt->execute()) {
                 $ObjSendMail->send_Mail($conf, $mailCnt);
+                $layout->header($conf);
                 $layout->homePageContent($GLOBALS['user_data']['name']);
                 echo "Registration successful, check your email to verify";
             } else {
@@ -35,47 +36,49 @@ class databaseOperations
     // Add this method to your databaseconnection class
     public function displayUsers()
     {
-        global $conn;
-        $username = $_GET['username'];
-        $user_password = $_GET['password'];
-        $GLOBALS['user_data_retrieval'] = array(
-            'name' => $username,
-            'password' => $user_password
-        );
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            global $conn;
+            $username = $_GET['username'];
+            $user_password = $_GET['password'];
+            $GLOBALS['user_data_retrieval'] = array(
+                'name' => $username,
+                'password' => $user_password
+            );
 
-        try {
-            $stmt = $conn->prepare("SELECT username, email FROM users WHERE username=? AND user_password=?");
-            $stmt->bind_param('ss', $username, $user_password);
-            $stmt->execute();
-            $result = $stmt->get_result();
+            try {
+                $stmt = $conn->prepare("SELECT username, email FROM users WHERE username=? AND user_password=?");
+                $stmt->bind_param('ss', $username, $user_password);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-            if ($result->num_rows > 0) {
-                // echo "<table border='1' style='border-collapse: collapse; width: 100%;'>";
-                // echo "<thead>";
-                // echo "<tr><th>Username</th><th>Email</th></tr>";
-                // echo "</thead>";
-                // echo "<tbody>";
-                $this->showHomepage();
-                // while ($row = $result->fetch_assoc()) {
-                //     echo "<tr>";
-                //     echo "<td>" . htmlspecialchars($row['username'] ?? '') . "</td>";
-                //     echo "<td>" . htmlspecialchars($row['email'] ?? '') . "</td>";
-                //     echo "</tr>";
-                // }
+                if ($result->num_rows > 0) {
+                    // echo "<table border='1' style='border-collapse: collapse; width: 100%;'>";
+                    // echo "<thead>";
+                    // echo "<tr><th>Username</th><th>Email</th></tr>";
+                    // echo "</thead>";
+                    // echo "<tbody>";
+                    $this->showHomepage();
+                    // while ($row = $result->fetch_assoc()) {
+                    //     echo "<tr>";
+                    //     echo "<td>" . htmlspecialchars($row['username'] ?? '') . "</td>";
+                    //     echo "<td>" . htmlspecialchars($row['email'] ?? '') . "</td>";
+                    //     echo "</tr>";
+                    // }
 
-                // echo "</tbody>";
-                // echo "</table>";
-            } else {
-                echo "<script>alert('Invalid username or Password')</script>";
+                    // echo "</tbody>";
+                    // echo "</table>";
+                } else {
+                    echo "<script>alert('Invalid username or Password')</script>";
+                }
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage();
             }
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
         }
     }
     private function showHomePage()
     {
-        global $conf;
-        $layout = new Layouts();
+        global $conf, $layout;
+        //$layout = new Layouts();
         $layout->header($conf);
         $layout->homePageContent($GLOBALS['user_data_retrieval']['name']);
     }

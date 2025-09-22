@@ -63,7 +63,7 @@ class Layouts
                     </nav>
                 <?php
             }
-            public function displayBooksPage()
+            private function displayBooksPage()
             {
                 switch ($this->action) {
                     case "books":
@@ -112,7 +112,7 @@ class Layouts
                             <div class="h-100 p-5 bg-body-tertiary border rounded-3">
                                 <h2>About Us</h2>
                                 <p>
-                                    Welcome to BookHaven, your premier destination for literary discovery and endless reading adventures.
+                                    Welcome to The Good Bookstore Kenya, your premier destination for literary discovery and endless reading adventures.
                                     Our carefully curated collection spans over 50,000 titles across every genre imaginable, from heart-pounding thrillers and enchanting fantasy novels to thought-provoking biographies and practical self-help guides.
                                     Whether you're searching for the latest bestsellers, timeless classics, or hidden literary gems waiting to be discovered, BookHaven offers an unparalleled selection at competitive prices.
                                 </p>
