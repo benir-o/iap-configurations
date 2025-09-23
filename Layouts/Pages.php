@@ -5,6 +5,8 @@ require "../conf.php";
 class Pages
 {
     public $authorSet = [];
+    private $bookAuthor;
+    public $bookImg;
 
     public function __construct($authors = [])
     {
@@ -333,15 +335,16 @@ class Pages
     <?php
     }
 
-    public function makebook($bookAuthor)
+    public function makebook($author_name, $booksList = [])
     {
+        $this->bookAuthor = new Authors($author_name, $booksList);
     ?>
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="card h-100 border-0 shadow-sm">
                 <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop" class="card-img-top book-cover rounded-3" alt="Book Cover">
                 <div class="card-body d-flex flex-column">
-                    <h6 class="card-title fw-bold">The Silent Patient</h6>
-                    <p class="text-muted small mb-2">Alex Michaelides</p>
+                    <h6 class="card-title fw-bold"><?php print $booksList[0] ?></h6>
+                    <p class="text-muted small mb-2"><?php print $author_name ?></p>
                     <div class="text-warning mb-2">
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
@@ -364,4 +367,5 @@ class Pages
 }
 $pages = new Pages([$author1, $author2, $author3, $author4]);
 $layout->header($conf);
-$pages->bookViewing();
+$pages->makebook($author4->author_name, $author4->books);
+//$pages->bookViewing();
