@@ -1,6 +1,15 @@
 <?php
+require "../Global/bookAuthors.php";
+require "../classAutoLoad.php";
+require "../conf.php";
 class Pages
 {
+    public $authorSet = [];
+
+    public function __construct($authors = [])
+    {
+        $this->authorSet = $authors;
+    }
     public function bookViewing()
     {
 ?>
@@ -323,7 +332,8 @@ class Pages
 
     <?php
     }
-    public function makebook($bookimage, $bookName, $bookAuthor)
+
+    public function makebook($bookAuthor)
     {
     ?>
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -352,3 +362,6 @@ class Pages
 <?php
     }
 }
+$pages = new Pages([$author1, $author2, $author3, $author4]);
+$layout->header($conf);
+$pages->bookViewing();
