@@ -33,14 +33,6 @@ class Authors
         print_r($bookFound);
     }
 }
-$author1 = new Authors("James Clear", ['Atomic Habits', 'The clear Habit Journal']);
-$author2 = new Authors("Morgan Housel", [
-    "The Psychology of Money",
-    "Same as Ever: A Guide to What Never Changes",
-    "The Art of Spending Money: Simple Choices for a Richer Life"
-]);
-$author3 = new Authors("Jane Austen", ["Pride and Prejudice", "Sense and sensibility"]);
-$author4 = new Authors("Chimamanda Ngozi Adichie", ["Purple Hibiscus", "Half of a Yellow Sun", "Americana", "Dream Count", "Mama's Sleeping Calf", "The Thing Around Your Neck"]);
 
 //Authors::displayAllAuthorsandBooks();
 //Authors::getAuthorBooks("Chimamanda Ngozi Adichie");

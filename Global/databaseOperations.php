@@ -52,21 +52,7 @@ class databaseOperations
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
-                    // echo "<table border='1' style='border-collapse: collapse; width: 100%;'>";
-                    // echo "<thead>";
-                    // echo "<tr><th>Username</th><th>Email</th></tr>";
-                    // echo "</thead>";
-                    // echo "<tbody>";
                     $this->showHomepage();
-                    // while ($row = $result->fetch_assoc()) {
-                    //     echo "<tr>";
-                    //     echo "<td>" . htmlspecialchars($row['username'] ?? '') . "</td>";
-                    //     echo "<td>" . htmlspecialchars($row['email'] ?? '') . "</td>";
-                    //     echo "</tr>";
-                    // }
-
-                    // echo "</tbody>";
-                    // echo "</table>";
                 } else {
                     echo "<script>alert('Invalid username or Password')</script>";
                 }
@@ -78,7 +64,6 @@ class databaseOperations
     private function showHomePage()
     {
         global $conf, $layout;
-        //$layout = new Layouts();
         $layout->header($conf);
         $layout->homePageContent($GLOBALS['user_data_retrieval']['name']);
     }

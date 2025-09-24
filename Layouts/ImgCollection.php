@@ -25,5 +25,5 @@ $booksAndImgs = [
     "The Song of Achilles" => "",
     "Will (Will Smith) Finding me (Viola Davis)" => "",
     "The Idiot. It's the 4th time I can't understand it" => "",
-    "Leaders Eat Last" => "",
+    "Leaders Eat Last" => ""
 ];
