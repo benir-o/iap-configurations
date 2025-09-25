@@ -1,6 +1,6 @@
 <?php
-require "../classAutoLoad.php";
-class Layouts
+require "booksDisplay.php";
+class LayoutManager
 {
 
     private $action;
@@ -56,7 +56,7 @@ class Layouts
                                         <a class="nav-link " href="?action=signup" id="signup-link">Sign up</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="/iap-configurations/Layouts/booksDisplay.php" id="browsebooks">Browse books</a>
+                                        <a class="nav-link " href="?action=browseBooks" id="browsebooks">Browse books</a>
                                     </li>
                                 </ul>
                                 <form role="search"> <input class="form-control" type="search" placeholder="Search" aria-label="Search"> </form>
@@ -85,6 +85,7 @@ class Layouts
                             <div class="h-100 p-5 text-bg-dark rounded-3">
 
                                 <?php
+
                                 $signForm = new forms();
                                 switch ($this->action) {
                                     case "signin":
@@ -112,7 +113,7 @@ class Layouts
                     </div>
                 <?php
             }
-            public function homePageContent($username)
+            public function homePageContent()
             {
                 ?>
                     <?php

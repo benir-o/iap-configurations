@@ -1,5 +1,5 @@
 <?php
-require "../classAutoLoad.php";
+
 class booksDisplay
 {
     function __construct() {}
@@ -342,6 +342,5 @@ class booksDisplay
     <?php
     }
 }
-$layout->header($conf);
-$layout->homePageContent("");
+// $bookView = new booksDisplay();
 // $bookView->displayBooks();
