@@ -12,22 +12,21 @@ class databaseOperations
             $username = $_POST['username'];
             $email = $_POST['email'];
             $user_password = $_POST['password'];
+            $verification_code = rand(10000, 990000);
             $GLOBALS['user_data'] = array(
                 'name' => $username,
                 'email' => $email,
                 'password' => $user_password,
+                'verification_code' => $verification_code
             );
             //Insert the user into the database
-            $stmt = $conn->prepare("INSERT INTO users (username,email,user_password) VALUES (?,?,?)");
+            $stmt = $conn->prepare("INSERT INTO users (username,email,user_password, verification_code) VALUES (?,?,?,?)");
             //Bind 4 strings: Name, Email, Password, Token
-            $stmt->bind_param("sss", $username, $email, $user_password);
+            $stmt->bind_param("ssss", $username, $email, $user_password, $verification_code);
 
             //We would like to send a verification email
             if ($stmt->execute()) {
                 $ObjSendMail->send_Mail($conf, $mailCnt);
-                $layout->header($conf);
-                $layout->homePageContent($GLOBALS['user_data']['name']);
-                echo "Registration successful, check your email to verify";
             } else {
                 echo "Error: " . $stmt->error;
             }

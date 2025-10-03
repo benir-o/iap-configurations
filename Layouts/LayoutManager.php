@@ -56,7 +56,7 @@ class LayoutManager
                                         <a class="nav-link " href="?action=signup" id="signup-link">Sign up</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="?action=browseBooks" id="browsebooks">Browse books</a>
+                                        <a class="nav-link " href="?action=browseBooks" id="browsebooks"><?php print "Browse books" ?></a>
                                     </li>
                                 </ul>
                                 <form role="search"> <input class="form-control" type="search" placeholder="Search" aria-label="Search"> </form>

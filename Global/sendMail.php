@@ -33,8 +33,9 @@ class sendMail
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $mailCnt['subject'];
-            $mail->Body    = 'Hello ' . $GLOBALS['user_data']['name'] . ", Welcome to Benir's Application";
-            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->Body    = 'Hello ' . $GLOBALS['user_data']['name'] . ",
+            Welcome to Benir's Application<br>Your Verification code is <strong>" . $GLOBALS['user_data']['verification_code'] . "</strong>";
+
 
             $mail->send();
             return true; // Message has been sent
