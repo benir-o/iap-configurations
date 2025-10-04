@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/../Forms/forms.php';
 class databaseOperations
 {
 
@@ -27,6 +27,9 @@ class databaseOperations
             //We would like to send a verification email
             if ($stmt->execute()) {
                 $ObjSendMail->send_Mail($conf, $mailCnt);
+                $layout->header($conf);
+                $myForm = new forms();
+                $myForm->verification_form();
             } else {
                 echo "Error: " . $stmt->error;
             }
@@ -65,5 +68,20 @@ class databaseOperations
         global $conf, $layout;
         $layout->header($conf);
         $layout->homePageContent($GLOBALS['user_data_retrieval']['name']);
+    }
+    public function authenticateUser()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            global $conf, $conn, $layout;
+            $authentication_code = $_POST['code'];
+            $authstmt = $conn->prepare("SELECT verification_code FROM users WHERE verification_code=?");
+            $authstmt->bind_param("s", $authentication_code);
+            if ($authstmt->execute()) {
+                $layout->header($conf);
+                $layout->homePageContent();
+            } else {
+                echo "Error: " . $authstmt->error;
+            }
+        }
     }
 }

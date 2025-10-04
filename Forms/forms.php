@@ -64,6 +64,25 @@ class forms
 
         </div>
 
+    <?php
+    }
+
+    public function verification_form()
+    {
+    ?>
+        <form method="post" action="/iap-configurations/Global/verificationForm.php" id="verificationCodeForm">
+            <div class="container-fluid">
+                <h2>Enter Code</h2>
+                <p>A code was sent to your email Address. Place the code here: </p>
+                <div class="mb-3">
+                    <label for="code">Verification Code: </label>
+                    <input type="text" id="code" name="code" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <?php $this->submit_button("Verify", "verificationcode"); ?>
+                </div>
+        </form>
 <?php
+
     }
 }
