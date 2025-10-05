@@ -19,6 +19,19 @@ class databaseOperations
                 'password' => $user_password,
                 'verification_code' => $verification_code
             );
+            // Check if user already exists (by email or username)
+            $checkStmt = $conn->prepare("SELECT id FROM users WHERE username=? OR email=?");
+            $checkStmt->bind_param("ss", $username, $email);
+            $checkStmt->execute();
+            $checkResult = $checkStmt->get_result();
+
+            if ($checkResult->num_rows > 0) {
+                // User already exists
+                header("Location: /iap-configurations/index.php?error=user_exists");
+                exit;
+                // Takes the user back to the signup page if similar credentials appear in the database
+                return;
+            }
             //Insert the user into the database
             $stmt = $conn->prepare("INSERT INTO users (username,email,user_password, verification_code) VALUES (?,?,?,?)");
             //Bind 4 strings: Name, Email, Password, Token
@@ -71,16 +84,28 @@ class databaseOperations
     }
     public function authenticateUser()
     {
+        global $layout, $conf;
+        if (isset($_GET['error']) && $_GET['error'] === 'invalid_code') {
+            echo "<script>alert('Invalid verification code. Please try again.')</script>";
+            $layout->header($conf);
+            $reauthenticate = new forms();
+            $reauthenticate->verification_form();
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             global $conf, $conn, $layout;
             $authentication_code = $_POST['code'];
             $authstmt = $conn->prepare("SELECT verification_code FROM users WHERE verification_code=?");
             $authstmt->bind_param("s", $authentication_code);
-            if ($authstmt->execute()) {
+            $authstmt->execute();
+            $authresult = $authstmt->get_result();
+            if ($authresult && $authresult->num_rows > 0) {
                 $layout->header($conf);
                 $layout->homePageContent();
             } else {
-                echo "Error: " . $authstmt->error;
+                //We redirect the user back to the verification page
+                header("Location: /iap-configurations/Global/verificationForm.php?error=invalid_code");
+                exit;
+                //echo "Error: " . $authstmt->error;
             }
         }
     }
