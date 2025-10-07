@@ -7,7 +7,6 @@ global $conn;
 if (isset($conn) && $conn instanceof mysqli) {
     $conn->close();
 }
-
 // Destroy the session
 session_destroy();
 

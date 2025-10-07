@@ -115,10 +115,8 @@ class LayoutManager
             }
             public function homePageContent()
             {
+                $this->myBook->bookPageNavSection();
                 ?>
-                    <?php
-                    $this->myBook->bookPageNavSection();
-                    ?>
                     <section class="bg-primary text-white py-5" id="home">
                         <?php
                         $this->myBook->homeSection();

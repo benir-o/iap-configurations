@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../Forms/forms.php';
+session_start();
 class databaseOperations
 {
 
@@ -9,19 +10,19 @@ class databaseOperations
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             global $conf, $ObjSendMail, $mailCnt, $conn, $layout; // Access global configuration and mail object
 
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $user_password = $_POST['password'];
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['email'] = $_POST['email'];
+            $_SESSION['password'] = $_POST['password'];
             $verification_code = rand(10000, 990000);
             $GLOBALS['user_data'] = array(
-                'name' => $username,
-                'email' => $email,
-                'password' => $user_password,
+                'name' => $_SESSION['username'],
+                'email' => $_SESSION['email'],
+                'password' => $_SESSION['password'],
                 'verification_code' => $verification_code
             );
             // Check if user already exists (by email or username)
             $checkStmt = $conn->prepare("SELECT id FROM users WHERE username=? OR email=?");
-            $checkStmt->bind_param("ss", $username, $email);
+            $checkStmt->bind_param("ss", $_SESSION['username'], $_SESSION['email']);
             $checkStmt->execute();
             $checkResult = $checkStmt->get_result();
 
@@ -35,10 +36,11 @@ class databaseOperations
             //Insert the user into the database
             $stmt = $conn->prepare("INSERT INTO users (username,email,user_password, verification_code) VALUES (?,?,?,?)");
             //Bind 4 strings: Name, Email, Password, Token
-            $stmt->bind_param("ssss", $username, $email, $user_password, $verification_code);
+            $stmt->bind_param("ssss", $_SESSION['username'], $_SESSION['email'], $_SESSION['password'], $verification_code);
 
             //We would like to send a verification email
             if ($stmt->execute()) {
+                $_SESSION['can_access_validatecreation'] = true;
                 $ObjSendMail->send_Mail($conf, $mailCnt);
                 $layout->header($conf);
                 $myForm = new forms();
@@ -46,6 +48,7 @@ class databaseOperations
             } else {
                 echo "Error: " . $stmt->error;
             }
+            session_destroy();
         }
     }
     // Add this method to your databaseconnection class
@@ -53,20 +56,21 @@ class databaseOperations
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             global $conn;
-            $username = $_GET['username'];
-            $user_password = $_GET['password'];
+            $_SESSION['username1'] = $_GET['username'];
+            $_SESSION['password1'] = $_GET['password'];
             $GLOBALS['user_data_retrieval'] = array(
-                'name' => $username,
-                'password' => $user_password
+                'name' => $_SESSION['username'],
+                'password' => $_SESSION['password']
             );
 
             try {
                 $stmt = $conn->prepare("SELECT username, email FROM users WHERE username=? AND user_password=?");
-                $stmt->bind_param('ss', $username, $user_password);
+                $stmt->bind_param('ss', $_SESSION['username'], $_SESSION['password']);
                 $stmt->execute();
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
+                    $_SESSION['can_access_validateselection'] = true;
                     $this->showHomepage();
                 } else {
                     echo "<script>alert('Invalid username or Password')</script>";
@@ -80,7 +84,7 @@ class databaseOperations
     {
         global $conf, $layout;
         $layout->header($conf);
-        $layout->homePageContent($GLOBALS['user_data_retrieval']['name']);
+        $layout->homePageContent();
     }
     public function authenticateUser()
     {
