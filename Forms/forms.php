@@ -5,7 +5,8 @@ class forms
     {
 ?>
 
-        <form method="post" action="/iap-configurations/Global/validateForm.php" id="signUp">
+        <form method="post" action="/iap-configurations/Global/databaseOperations.php" id="signUp">
+            <input type="hidden" name="action" value="signup">
             <div class="container-fluid">
                 <h2>Sign Up</h2>
                 <p>Sign Up to make online purchases, view books and make reservations</p>
@@ -40,7 +41,8 @@ class forms
     public function login()
     {
     ?>
-        <form method="get" action="/iap-configurations/Global/validateForm.php" id="signin">
+        <form method="post" action="/iap-configurations/Global/dataBaseOperations.php" id="signin">
+            <input type="hidden" name="action" value="login">
             <div class="container-fluid">
                 <h2>Sign in</h2>
                 <p>Glad to see you back.</p>

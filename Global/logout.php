@@ -7,9 +7,12 @@ global $conn;
 if (isset($conn) && $conn instanceof mysqli) {
     $conn->close();
 }
+if (isset($_SERVER['REQUEST_METHOD'])) {
+    session_destroy();
+    header("Location: /iap-configurations/index.php");
+}
+
+
 // Destroy the session
-session_destroy();
 
 // Redirect to the default page
-header("Location: /iap-configurations/index.php");
-exit;

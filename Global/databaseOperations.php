@@ -1,10 +1,23 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+
+    header("Location: /iap-configurations/index.php");
+    exit;
+}
 require_once __DIR__ . '/../Forms/forms.php';
+require_once __DIR__ . '/../conf.php';
+require_once __DIR__ . '/../Layouts/LayoutManager.php';
+
 session_start();
 class databaseOperations
 {
 
+    public LayoutManager $layout1;
 
+    function __construct()
+    {
+        $this->layout1 = new LayoutManager();
+    }
     public function databaseinsertion()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -54,18 +67,18 @@ class databaseOperations
     // Add this method to your databaseconnection class
     public function displayUsers()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             global $conn;
-            $_SESSION['username1'] = $_GET['username'];
-            $_SESSION['password1'] = $_GET['password'];
+            $_SESSION['username1'] = $_POST['username'];
+            $_SESSION['password1'] = $_POST['password'];
             $GLOBALS['user_data_retrieval'] = array(
-                'name' => $_SESSION['username'],
-                'password' => $_SESSION['password']
+                'name' => $_SESSION['username1'],
+                'password' => $_SESSION['password1']
             );
 
             try {
                 $stmt = $conn->prepare("SELECT username, email FROM users WHERE username=? AND user_password=?");
-                $stmt->bind_param('ss', $_SESSION['username'], $_SESSION['password']);
+                $stmt->bind_param('ss', $_SESSION['username1'], $_SESSION['password1']);
                 $stmt->execute();
                 $result = $stmt->get_result();
 
@@ -83,8 +96,8 @@ class databaseOperations
     private function showHomePage()
     {
         global $conf, $layout;
-        $layout->header($conf);
-        $layout->homePageContent();
+        $this->layout1->header($conf);
+        $this->layout1->homePageContent();
     }
     public function authenticateUser()
     {
@@ -103,8 +116,8 @@ class databaseOperations
             $authstmt->execute();
             $authresult = $authstmt->get_result();
             if ($authresult && $authresult->num_rows > 0) {
-                $layout->header($conf);
-                $layout->homePageContent();
+                $this->layout1->header($conf);
+                $this->layout1->homePageContent();
             } else {
                 //We redirect the user back to the verification page
                 header("Location: /iap-configurations/Global/verificationForm.php?error=invalid_code");
@@ -112,5 +125,15 @@ class databaseOperations
                 //echo "Error: " . $authstmt->error;
             }
         }
+    }
+}
+$dbaseObject1 = new databaseOperations();
+if (isset($_POST['action'])) {
+    if ($_POST['action'] === 'signup') {
+        $dbaseObject1->databaseinsertion();
+    } elseif ($_POST['action'] === 'login') {
+        $dbaseObject1->displayUsers();
+    } else {
+        echo "No View";
     }
 }
