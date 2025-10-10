@@ -129,6 +129,15 @@ class databaseOperations
             }
         }
     }
+    public function passwordReset()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_SESSION['code'] = $_POST['code'];
+            $_SESSION['newpassword'] = $_POST['newpassword'];
+            global $conn;
+            $pass_stmt = $conn->prepare("SELECT verification_code FROM users WHERE verification_code=?");
+        }
+    }
 }
 $dbaseObject1 = new databaseOperations();
 if (isset($_POST['action'])) {

@@ -58,7 +58,8 @@ class forms
                     <input type="submit" value="log in"><a href="#signUp">Don't have an account? Sign up</a>
                 </div>-->
                 <div class="mb-3">
-                    <?php $this->submit_button("Sign In", "signin"); ?> <a href="#">Don't have an account, Sign up</a>
+                    <?php $this->submit_button("Sign In", "signin"); ?><br> <a href="#">Don't have an account, Sign up</a><br>
+                    <a href="/iap-configurations/Global/passwordReset.php">Forgot Password?</a>
                 </div>
 
 
@@ -79,6 +80,28 @@ class forms
                 <div class="mb-3">
                     <label for="code">Verification Code: </label>
                     <input type="text" id="code" name="code" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <?php $this->submit_button("Verify", "verificationcode"); ?>
+                </div>
+        </form>
+    <?php
+
+    }
+    public function password_reset_form()
+    {
+    ?>
+        <form method="post" action="/iap-configurations/Global/verifyNewUser.php" id="verificationCodeForm">
+            <div class="container-fluid">
+                <h2>Enter Code</h2>
+                <p>A code was sent to your email Address. Place the code here: </p>
+                <div class="mb-3">
+                    <label for="code">Verification Code: </label>
+                    <input type="text" id="code" name="code" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="newpassword">New Password: </label>
+                    <input type="password" id="newpassword" name="newpassword" class="form-control">
                 </div>
                 <div class="mb-3">
                     <?php $this->submit_button("Verify", "verificationcode"); ?>
