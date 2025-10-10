@@ -2,3 +2,4 @@ conf.php
 classAutoLoad.php
 AuthorLists.txt
 /iap-configurations/Plugins
+/iap-configurations/vendor
