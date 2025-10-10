@@ -72,7 +72,7 @@ class forms
     public function verification_form()
     {
     ?>
-        <form method="post" action="/iap-configurations/Global/verificationForm.php" id="verificationCodeForm">
+        <form method="post" action="/iap-configurations/Global/verifyNewUser.php" id="verificationCodeForm">
             <div class="container-fluid">
                 <h2>Enter Code</h2>
                 <p>A code was sent to your email Address. Place the code here: </p>

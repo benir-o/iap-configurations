@@ -1,22 +1,26 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-
     header("Location: /iap-configurations/index.php");
     exit;
 }
 require_once __DIR__ . '/../Forms/forms.php';
 require_once __DIR__ . '/../conf.php';
 require_once __DIR__ . '/../Layouts/LayoutManager.php';
+require_once __DIR__ . '/../Global/sendMail.php';
 
 session_start();
 class databaseOperations
 {
 
     public LayoutManager $layout1;
+    public sendMail $mailObject;
+    public forms $FormObject;
 
     function __construct()
     {
         $this->layout1 = new LayoutManager();
+        $this->mailObject = new sendMail();
+        $this->FormObject = new forms();
     }
     public function databaseinsertion()
     {
@@ -53,11 +57,10 @@ class databaseOperations
 
             //We would like to send a verification email
             if ($stmt->execute()) {
-                $_SESSION['can_access_validatecreation'] = true;
-                $ObjSendMail->send_Mail($conf, $mailCnt);
-                $layout->header($conf);
-                $myForm = new forms();
-                $myForm->verification_form();
+                // $ObjSendMail->send_Mail($conf, $mailCnt);
+                $this->mailObject->send_Mail($conf, $mailCnt);
+                $this->layout1->header($conf);
+                $this->FormObject->verification_form();
             } else {
                 echo "Error: " . $stmt->error;
             }
@@ -83,7 +86,7 @@ class databaseOperations
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
-                    $_SESSION['can_access_validateselection'] = true;
+
                     $this->showHomepage();
                 } else {
                     echo "<script>alert('Invalid username or Password')</script>";
@@ -120,7 +123,7 @@ class databaseOperations
                 $this->layout1->homePageContent();
             } else {
                 //We redirect the user back to the verification page
-                header("Location: /iap-configurations/Global/verificationForm.php?error=invalid_code");
+                header("Location: /iap-configurations/index.php");
                 exit;
                 //echo "Error: " . $authstmt->error;
             }
@@ -133,7 +136,5 @@ if (isset($_POST['action'])) {
         $dbaseObject1->databaseinsertion();
     } elseif ($_POST['action'] === 'login') {
         $dbaseObject1->displayUsers();
-    } else {
-        echo "No View";
     }
 }
