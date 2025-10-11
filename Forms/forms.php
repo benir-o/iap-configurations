@@ -23,7 +23,7 @@ class forms
                     <input type="text" id="password" name="password" class="form-control" required aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div class="mb-3">
-                    <?php $this->submit_button("Sign Up", "signup"); ?> <a href="#">Already have an account? Log in</a>
+                    <?php $this->submit_button("Sign Up", "signup"); ?> <a href="/iap-configurations/Global/passwordReset.php">Already have an account? Log in</a>
                 </div>
             </div>
         </form>
@@ -48,7 +48,7 @@ class forms
                 <p>Glad to see you back.</p>
                 <div class="mb-3">
                     <label for="username">Username: </label>
-                    <input type="text" id="username" name="username" class="form-control">
+                    <input type="text" id="username" name="username" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label for="password">Password:</label>
@@ -61,11 +61,9 @@ class forms
                     <?php $this->submit_button("Sign In", "signin"); ?><br> <a href="#">Don't have an account, Sign up</a><br>
                     <a href="/iap-configurations/Global/passwordReset.php">Forgot Password?</a>
                 </div>
-
-
+            </div>
         </form>
 
-        </div>
 
     <?php
     }
@@ -91,20 +89,20 @@ class forms
     public function password_reset_form()
     {
     ?>
-        <form method="post" action="/iap-configurations/Global/verifyNewUser.php" id="verificationCodeForm">
+        <form method="post" action="/iap-configurations/Global/databaseOperations.php" id="verificationCodeForm">
+            <input type="hidden" name="action" value="passwordReset">
             <div class="container-fluid">
-                <h2>Enter Code</h2>
-                <p>A code was sent to your email Address. Place the code here: </p>
+                <h2>Reset Password</h2>
                 <div class="mb-3">
-                    <label for="code">Verification Code: </label>
-                    <input type="text" id="code" name="code" class="form-control">
+                    <label for="initialemail">Email Address: </label>
+                    <input type="text" id="initialemail" name="initialemail" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="newpassword">New Password: </label>
                     <input type="password" id="newpassword" name="newpassword" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <?php $this->submit_button("Verify", "verificationcode"); ?>
+                    <?php $this->submit_button("Reset Password", "password Reset"); ?>
                 </div>
         </form>
 <?php

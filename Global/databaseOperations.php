@@ -132,10 +132,20 @@ class databaseOperations
     public function passwordReset()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_SESSION['code'] = $_POST['code'];
+            $_SESSION['initialemail'] = $_POST['initialemail'];
             $_SESSION['newpassword'] = $_POST['newpassword'];
             global $conn;
-            $pass_stmt = $conn->prepare("SELECT verification_code FROM users WHERE verification_code=?");
+            $pass_stmt = $conn->prepare("SELECT email FROM users WHERE email=?");
+            $pass_stmt->bind_param("s", $_SESSION['initialemail']);
+            $pass_stmt->execute();
+            $executionresult = $pass_stmt->get_result();
+            if ($executionresult->num_rows > 0) {
+                $setNewPassword = $conn->prepare("UPDATE TABLE users set user_password=? WHERE email=?");
+                $setNewPassword->bind_param("ss", $_SESSION['newpassword'], $_SESSION['initialemail']);
+            } else {
+                echo "<script>alert('Bad Credentials');
+                window.location.href = '/iap-configurations/index.php';</script>";
+            }
         }
     }
 }
@@ -145,5 +155,7 @@ if (isset($_POST['action'])) {
         $dbaseObject1->databaseinsertion();
     } elseif ($_POST['action'] === 'login') {
         $dbaseObject1->displayUsers();
+    } elseif ($_POST['action'] === 'passwordReset') {
+        $dbaseObject1->passwordReset();
     }
 }
