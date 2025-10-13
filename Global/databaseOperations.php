@@ -25,7 +25,7 @@ class databaseOperations
     public function databaseinsertion()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            global $conf, $ObjSendMail, $mailCnt, $conn, $layout; // Access global configuration and mail object
+            global $conf, $mailCnt, $conn; // Access global configuration and mail object
 
             $_SESSION['username'] = $_POST['username'];
             $_SESSION['email'] = $_POST['email'];
@@ -57,7 +57,7 @@ class databaseOperations
 
             //We would like to send a verification email
             if ($stmt->execute()) {
-                // $ObjSendMail->send_Mail($conf, $mailCnt);
+                $_SESSION['send_email_to_signup'] = true;
                 $this->mailObject->send_Mail($conf, $mailCnt);
                 $this->layout1->header($conf);
                 $this->FormObject->verification_form();
@@ -132,18 +132,29 @@ class databaseOperations
     public function passwordReset()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            global $conn, $conf, $mailCnt;
             $_SESSION['initialemail'] = $_POST['initialemail'];
             $_SESSION['newpassword'] = $_POST['newpassword'];
-            global $conn;
+            $verification_code = rand(10000, 990000);
+            $GLOBALS['resetFunction'] = array(
+                'verification_code' => $verification_code,
+                'initialemail' => $_SESSION['initialemail']
+            );
             $pass_stmt = $conn->prepare("SELECT email FROM users WHERE email=?");
             $pass_stmt->bind_param("s", $_SESSION['initialemail']);
             $pass_stmt->execute();
             $executionresult = $pass_stmt->get_result();
             if ($executionresult->num_rows > 0) {
-                $setNewPassword = $conn->prepare("UPDATE users set user_password=? WHERE email=?");
+                $this->mailObject->send_Mail($conf, $mailCnt);
+                $setverification = $conn->prepare("UPDATE users set verification_code=? WHERE email=?");
+                $setverification->bind_param("ss", $verification_code, $_SESSION['initialemail']);
+                $setverification->execute();
+                $setNewPassword = $conn->prepare("UPDATE users set user_password=?  WHERE email=?");
                 $setNewPassword->bind_param("ss", $_SESSION['newpassword'], $_SESSION['initialemail']);
                 $setNewPassword->execute();
-                echo "<script>window.location.href='/iap-configurations/index.php';</script>";
+                $this->layout1->header($conf);
+                $this->FormObject->verification_form();
+                // echo "<script>window.location.href='/iap-configurations/index.php';</script>";
             } else {
                 echo "<script>alert('Bad Credentials');
                 window.location.href = '/iap-configurations/index.php';</script>";

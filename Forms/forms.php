@@ -104,6 +104,8 @@ class forms
                 <div class="mb-3">
                     <?php $this->submit_button("Reset Password", "password Reset"); ?>
                 </div>
+            </div>
+
         </form>
 <?php
 
