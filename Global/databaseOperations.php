@@ -89,7 +89,7 @@ class databaseOperations
 
                     $this->showHomepage();
                 } else {
-                    echo "<script>alert('Invalid username or Password')</script>";
+                    echo "<script>alert('Invalid username or Password');window.location.href = '/iap-configurations/index.php'</script>";
                 }
             } catch (Exception $e) {
                 echo "Error: " . $e->getMessage();
@@ -140,8 +140,10 @@ class databaseOperations
             $pass_stmt->execute();
             $executionresult = $pass_stmt->get_result();
             if ($executionresult->num_rows > 0) {
-                $setNewPassword = $conn->prepare("UPDATE TABLE users set user_password=? WHERE email=?");
+                $setNewPassword = $conn->prepare("UPDATE users set user_password=? WHERE email=?");
                 $setNewPassword->bind_param("ss", $_SESSION['newpassword'], $_SESSION['initialemail']);
+                $setNewPassword->execute();
+                echo "<script>window.location.href='/iap-configurations/index.php';</script>";
             } else {
                 echo "<script>alert('Bad Credentials');
                 window.location.href = '/iap-configurations/index.php';</script>";

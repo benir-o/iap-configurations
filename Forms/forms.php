@@ -23,7 +23,7 @@ class forms
                     <input type="text" id="password" name="password" class="form-control" required aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div class="mb-3">
-                    <?php $this->submit_button("Sign Up", "signup"); ?> <a href="/iap-configurations/Global/passwordReset.php">Already have an account? Log in</a>
+                    <?php $this->submit_button("Sign Up", "signup"); ?> <a href="#">Already have an account? Log in</a>
                 </div>
             </div>
         </form>

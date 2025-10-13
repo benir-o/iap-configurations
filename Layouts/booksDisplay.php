@@ -34,17 +34,13 @@ class booksDisplay
                             <a class="nav-link" href="#about">About</a>
                         </li>
                     </ul>
-                    <div class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search books..." style="min-width: 250px;">
-                        <button class="btn btn-outline-light me-2" type="submit">
-                            <i class="bi bi-search"></i>
-                        </button>
-                        <button class="btn btn-light me-2">
-                            <i class="bi bi-cart3"></i>
-                            <span class="badge bg-danger">3</span>
-                        </button>
-                        <button class="btn btn-outline-light">
-                            <i class="bi bi-person-circle"></i>
+                    <div class="cartitemsPage">
+                        <button class="btn btn-light position-relative">
+                            <!-- 🛒 Cart -->
+                            <i class="bi bi-cart-plus"></i> <!-- Add to cart -->
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">
+                                0
+                            </span>
                         </button>
                     </div>
                 </div>
