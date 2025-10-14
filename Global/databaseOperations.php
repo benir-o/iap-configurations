@@ -38,7 +38,7 @@ class databaseOperations
                 'verification_code' => $verification_code
             );
             // Check if user already exists (by email or username)
-            $checkStmt = $conn->prepare("SELECT id FROM users WHERE username=? OR email=?");
+            $checkStmt = $conn->prepare("SELECT id FROM bookstore_users WHERE username=? OR email=?");
             $checkStmt->bind_param("ss", $_SESSION['username'], $_SESSION['email']);
             $checkStmt->execute();
             $checkResult = $checkStmt->get_result();
@@ -51,7 +51,7 @@ class databaseOperations
                 return;
             }
             //Insert the user into the database
-            $stmt = $conn->prepare("INSERT INTO users (username,email,user_password, verification_code) VALUES (?,?,?,?)");
+            $stmt = $conn->prepare("INSERT INTO bookstore_users (username,email,user_password, verification_code) VALUES (?,?,?,?)");
             //Bind 4 strings: Name, Email, Password, Token
             $stmt->bind_param("ssss", $_SESSION['username'], $_SESSION['email'], $_SESSION['password'], $verification_code);
 
@@ -80,7 +80,7 @@ class databaseOperations
             );
 
             try {
-                $stmt = $conn->prepare("SELECT username, email FROM users WHERE username=? AND user_password=?");
+                $stmt = $conn->prepare("SELECT username, email FROM bookstore_users WHERE username=? AND user_password=?");
                 $stmt->bind_param('ss', $_SESSION['username1'], $_SESSION['password1']);
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -114,7 +114,7 @@ class databaseOperations
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             global $conf, $conn, $layout;
             $authentication_code = $_POST['code'];
-            $authstmt = $conn->prepare("SELECT verification_code FROM users WHERE verification_code=?");
+            $authstmt = $conn->prepare("SELECT verification_code FROM bookstore_users WHERE verification_code=?");
             $authstmt->bind_param("s", $authentication_code);
             $authstmt->execute();
             $authresult = $authstmt->get_result();
@@ -140,16 +140,16 @@ class databaseOperations
                 'verification_code' => $verification_code,
                 'initialemail' => $_SESSION['initialemail']
             );
-            $pass_stmt = $conn->prepare("SELECT email FROM users WHERE email=?");
+            $pass_stmt = $conn->prepare("SELECT email FROM bookstore_users WHERE email=?");
             $pass_stmt->bind_param("s", $_SESSION['initialemail']);
             $pass_stmt->execute();
             $executionresult = $pass_stmt->get_result();
             if ($executionresult->num_rows > 0) {
                 $this->mailObject->send_Mail($conf, $mailCnt);
-                $setverification = $conn->prepare("UPDATE users set verification_code=? WHERE email=?");
+                $setverification = $conn->prepare("UPDATE bookstore_users set verification_code=? WHERE email=?");
                 $setverification->bind_param("ss", $verification_code, $_SESSION['initialemail']);
                 $setverification->execute();
-                $setNewPassword = $conn->prepare("UPDATE users set user_password=?  WHERE email=?");
+                $setNewPassword = $conn->prepare("UPDATE bookstore_users set user_password=?  WHERE email=?");
                 $setNewPassword->bind_param("ss", $_SESSION['newpassword'], $_SESSION['initialemail']);
                 $setNewPassword->execute();
                 $this->layout1->header($conf);
