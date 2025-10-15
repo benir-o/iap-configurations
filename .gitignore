@@ -3,6 +3,7 @@ classAutoLoad.php
 AuthorLists.txt
 Plugins
 vendor
+bookstore-model-view-controller/.editorconfig
 bookstore-model-view-controller/.env
 bookstore-model-view-controller/bootstrap/cache/*
 bookstore-model-view-controller/config/*
