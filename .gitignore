@@ -7,5 +7,14 @@ bookstore-model-view-controller/.env
 bookstore-model-view-controller/bootstrap/cache/*
 bookstore-model-view-controller/config/*
 bookstore-model-view-controller/storage/*
+bookstore-model-view-controller/.env.example
+bookstore-model-view-controller/.gitattributes
+bookstore-model-view-controller/.gitignore
+bookstore-model-view-controller/artisan
+bookstore-model-view-controller/composer.json
+bookstore-model-view-controller/composer.lock
+bookstore-model-view-controller/package.json
+bookstore-model-view-controller/phpunit.xml
+bookstore-model-view-controller/vite.config.js
 composer.json
 composer.lock
