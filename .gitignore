@@ -1,7 +1,7 @@
 conf.php
 classAutoLoad.php
 AuthorLists.txt
-/iap-configurations/Plugins
+Plugins
 vendor
 bookstore-model-view-controller/.env
 bookstore-model-view-controller/bootstrap/cache/*
