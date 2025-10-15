@@ -7,3 +7,5 @@ bookstore-model-view-controller/.env
 bookstore-model-view-controller/bootstrap/cache/*
 bookstore-model-view-controller/config/*
 bookstore-model-view-controller/storage/*
+composer.json
+composer.lock
