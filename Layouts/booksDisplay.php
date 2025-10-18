@@ -330,7 +330,7 @@ class booksDisplay
                             </div>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
                                 <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$13.99</span>
-                                <button class="btn btn-outline-primary btn-sm">
+                                <button class="btn btn-outline-primary btn-sm add-to-cart-btn">
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
