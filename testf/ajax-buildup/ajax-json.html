@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX MySQL Table (PHP)</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">Student Data (from MySQL)</h2>
+      <div class="text-center mb-3">
+        <button id="loadBtn" class="btn btn-success">Load Data</button>
+      </div>
+
+      <table class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Campus</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+          <!-- Data goes here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      document.getElementById("loadBtn").addEventListener("click", function () {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "getData.php", true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            const students = data.students;
+            const tableBody = document.getElementById("studentTableBody");
+            tableBody.innerHTML = "";
+
+            students.forEach((student) => {
+              const row = `
+          <tr>
+            <td>${student.name}</td>
+            <td>${student.age}</td>
+            <td>${student.campus}</td>
+          </tr>
+        `;
+              tableBody.innerHTML += row;
+            });
+          }
+        };
+        xhr.send();
+      });
+    </script>
+  </body>
+</html>

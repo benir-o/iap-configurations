@@ -1,0 +1,22 @@
+{
+  "students": [
+    {
+      "name": "Nir Odeny",
+      "age": 19,
+      "course": "Computer Science",
+      "university": "Strathmore University"
+    },
+    {
+      "name": "Jane Mwangi",
+      "age": 20,
+      "course": "Information Technology",
+      "university": "Kenyatta University"
+    },
+    {
+      "name": "Brian Otieno",
+      "age": 21,
+      "course": "Software Engineering",
+      "university": "Jomo Kenyatta University of Agriculture and Technology"
+    }
+  ]
+}
