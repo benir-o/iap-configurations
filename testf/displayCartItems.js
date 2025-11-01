@@ -40,12 +40,12 @@ function displayCart(data) {
         <td>${item.book_name}</td>
         <td>${item.author}</td>
         <td>${item.quantity}</td>
-        <td>$${item.book_price}</td>
-        <td>$${item.total_price}</td>
+        <td>Ksh. ${item.book_price}</td>
+        <td>Ksh. ${item.total_price}</td>
         `;
         tbody.appendChild(row);
         totalAmount += parseFloat(item.total_price);
         });
 
-    totalCell.textContent = "$" + totalAmount.toFixed(2);
+    totalCell.textContent = "Ksh. " + totalAmount.toFixed(2);
 }

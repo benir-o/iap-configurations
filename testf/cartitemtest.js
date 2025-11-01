@@ -57,8 +57,8 @@ function displayCart(data) {
       <td>${item.book_name}</td>
       <td>${item.author}</td>
       <td>${item.quantity}</td>
-      <td>$${item.price}</td>
-      <td>$${item.total_price}</td>
+      <td>Ksh. ${item.price}</td>
+      <td>Ksh. ${item.total_price}</td>
     `;
     tbody.appendChild(row);
     totalAmount += parseFloat(item.total_price);
