@@ -13,8 +13,8 @@ header('Content-Type: application/json');
 // Database connection
 $servername = "localhost";
 $username = "root";      // change if needed
-$password = "ManCity@254";          // change if needed
-$dbname = "basedata5";   // change to your actual DB name
+$password = "";          // change if needed
+$dbname = "";   // change to your actual DB name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
