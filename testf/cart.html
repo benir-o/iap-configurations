@@ -10,30 +10,39 @@
     />
   </head>
   <body class="bg-light">
-    <div class="container mt-5">
-      <h3>Your Cart</h3>
-      <table
-        class="table table-striped table-hover table-bordered border-primary align-middle"
-      >
-        <thead class="table-primary">
-          <tr>
-            <th>Book Name</th>
-            <th>Author</th>
-            <th>Quantity</th>
-            <th>Price (Each)</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody id="cartBody"></tbody>
-        <tfoot class="table-light">
-          <tr>
-            <td colspan="4" class="text-end fw-bold">
-              <strong>Total Amount:</strong>
-            </td>
-            <td id="cartTotal" class="fw-bold text-primary">Ksh. 0.00</td>
-          </tr>
-        </tfoot>
-      </table>
+    <div class="container my-5">
+      <div class="table-responsive bg-white shadow rounded-4 p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-primary fw-bold">Your Cart</h4>
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control w-50"
+            placeholder="Search book or author..."
+          />
+        </div>
+
+        <table class="table table-striped table-hover align-middle mb-0">
+          <thead class="table-primary">
+            <tr>
+              <th>Book Name</th>
+              <th>Author</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="cartBody">
+            <!-- Data populated by JS -->
+          </tbody>
+          <tfoot class="table-light">
+            <tr>
+              <td colspan="4" class="text-end fw-bold">Total:</td>
+              <td id="cartTotal" class="fw-bold text-primary">$0.00</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
 
     <script src="cart.js"></script>

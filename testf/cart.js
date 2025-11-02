@@ -11,8 +11,8 @@ window.onload = function () {
 
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
-  const tbody = document.getElementById("cartBody");
-  const totalCell = document.getElementById("cartTotal");
+  // const tbody = document.getElementById("cartBody");
+  // const totalCell = document.getElementById("cartTotal");
 
   // Load all data initially
   loadCartData();
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function loadCartData(search = "") {
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", `displayCart.php?search=${encodeURIComponent(search)}`, true);
+    xhr.open("GET", `searchCartItem.php?search=${encodeURIComponent(search)}`, true);
 
     xhr.onload = function () {
       if (xhr.status === 200) {
@@ -66,16 +66,17 @@ function displayCart(data) {
 
     data.forEach((item) => {
     const row = document.createElement("tr");
-        row.innerHTML = `
+    row.innerHTML = `
         <td>${item.book_name}</td>
         <td>${item.author}</td>
-        <td>${item.quantity}</td>
-        <td>Ksh. ${item.book_price}</td>
+        <td>${item.book_price}</td>
+        <td>Ksh. ${item.quantity}</td>
         <td>Ksh. ${item.total_price}</td>
-        `;
-        tbody.appendChild(row);
-        totalAmount += parseFloat(item.total_price);
-        });
+    `;
+    tbody.appendChild(row);
+    totalAmount += parseFloat(item.total_price);
+});
+
 
     totalCell.textContent = "Ksh. " + totalAmount.toFixed(2);
 }
