@@ -1,7 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get("user_id");
-
-      // Automatically load the cart when the page loads
+//Load the cart automatically when the page loads
 window.onload = function () {
     if (userId) {
         viewCart(userId);
@@ -10,6 +9,37 @@ window.onload = function () {
     }
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchInput");
+  const tbody = document.getElementById("cartBody");
+  const totalCell = document.getElementById("cartTotal");
+
+  // Load all data initially
+  loadCartData();
+
+  // Listen for typing in the search box
+  searchInput.addEventListener("keyup", function () {
+    const query = this.value.trim();
+    loadCartData(query);
+  });
+});
+
+function loadCartData(search = "") {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", `displayCart.php?search=${encodeURIComponent(search)}`, true);
+
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText);
+        displayCart(data);
+      } else {
+        console.error("Error loading data:", xhr.status);
+      }
+    };
+    xhr.send();
+}
+
+
 function viewCart(id) {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "displayCart.php?user_id=" + id, true);
@@ -17,7 +47,7 @@ function viewCart(id) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             try {
               const data = JSON.parse(xhr.responseText);
-              console.log(data);
+              console.log(data);//For debugging
               displayCart(data);
             } catch (e) {
               console.error("Error parsing JSON:", e);

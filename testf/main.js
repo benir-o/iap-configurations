@@ -18,7 +18,7 @@ function addToCart(userId, book_name, author) {
     }
   };
 
-  xhr.send(`user_id=1&book_name=${encodeURIComponent(book_name)}&author=${encodeURIComponent(author)}`);
+  xhr.send(`user_id=${userId}&book_name=${encodeURIComponent(book_name)}&author=${encodeURIComponent(author)}`);
   
 }
 //Redirects the user to the cart page
