@@ -134,8 +134,6 @@ class LayoutManager
                         $this->myBook->subscribeSection();
                         ?>
                     </section>
-
-
                 <?
             }
 
@@ -149,7 +147,7 @@ class LayoutManager
                     </footer>
                 </div>
             </main>
-            <script src="/js/script.js"></script>
+            <script src="/iap-configurations/testf/main.js"></script>
             <script src="<?php echo $conf['site_url']; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         </body>
 

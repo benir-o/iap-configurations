@@ -1,6 +1,6 @@
 function addToCart(userId, book_name, author) {
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "addToCart.php", true);
+  xhr.open("POST", "/iap-configurations/testf/addtoCart.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
@@ -23,7 +23,7 @@ function addToCart(userId, book_name, author) {
 }
 //Redirects the user to the cart page
 function goToCart(userId) {
-  window.location.href = "cart.html?user_id=" + userId;
+  window.location.href = "/iap-configurations/testf/cart.html?user_id=" + userId;
 }
 
 function viewCart() {

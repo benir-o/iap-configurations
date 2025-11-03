@@ -98,7 +98,7 @@ class databaseOperations
     }
     private function showHomePage()
     {
-        global $conf, $layout;
+        global $conf;
         $this->layout1->header($conf);
         $this->layout1->homePageContent();
     }

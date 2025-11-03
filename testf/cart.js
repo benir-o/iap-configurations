@@ -69,8 +69,8 @@ function displayCart(data) {
     row.innerHTML = `
         <td>${item.book_name}</td>
         <td>${item.author}</td>
-        <td>${item.book_price}</td>
-        <td>Ksh. ${item.quantity}</td>
+        <td>Ksh. ${item.book_price}</td>
+        <td>${item.quantity}</td>
         <td>Ksh. ${item.total_price}</td>
     `;
     tbody.appendChild(row);
