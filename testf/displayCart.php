@@ -20,7 +20,6 @@ $sql = "
     WHERE c.cart_id = ?
     GROUP BY b.book_name, b.author, b.book_price
 ";
-
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();

@@ -1,3 +1,34 @@
+function removeOneCopy(bookName, author) {
+  if (!confirm(`Remove one copy of "${bookName}" by ${author}?`)) return;
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "removeOneCopy.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      try {
+        const response = JSON.parse(xhr.responseText);
+        if (response.success) {
+          alert("Removed one copy successfully!");
+          loadCartData(); // Refresh cart contents + totals
+        } else {
+          alert("oneCopyAjax:  " + response.message);
+        }
+      } catch (e) {
+        console.error("Invalid JSON from server:", xhr.responseText);
+      }
+    }
+  };
+
+  const params =
+    "book_name=" +bookName +
+    "&author=" +author;
+
+  xhr.send(params);
+}
+
+
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get("user_id");
 //Load the cart automatically when the page loads
@@ -72,6 +103,11 @@ function displayCart(data) {
         <td>Ksh. ${item.book_price}</td>
         <td>${item.quantity}</td>
         <td>Ksh. ${item.total_price}</td>
+        <td>
+        <button class="btn btn-danger btn-sm" onclick="removeOneCopy('${item.book_name}','${item.author}')">
+          Remove
+        </button>
+      </td>
     `;
     tbody.appendChild(row);
     totalAmount += parseFloat(item.total_price);
