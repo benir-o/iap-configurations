@@ -1,3 +1,47 @@
+function addBook() {
+  const bookName = document.getElementById("bookName").value.trim();
+  const author = document.getElementById("author").value.trim();
+  const price = document.getElementById("price").value.trim();
+  const messageDiv = document.getElementById("message");
+
+  if (!bookName || !author || !price) {
+    messageDiv.innerHTML = `<div class="alert alert-warning">All fields are required.</div>`;
+    return;
+  }
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "/iap-configuration/addBook.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      try {
+        const response = JSON.parse(xhr.responseText);
+        if (response.success) {
+          messageDiv.innerHTML = `<div class="alert alert-success">${response.message}</div>`;
+          document.getElementById("addBookForm").reset();
+        } else {
+          messageDiv.innerHTML = `<div class="alert alert-danger">${response.message}</div>`;
+        }
+      } catch (e) {
+        messageDiv.innerHTML = `<div class="alert alert-danger">Invalid server response.</div>`;
+      }
+    }
+  };
+
+  const params =
+    "book_name=" + encodeURIComponent(bookName) +
+    "&author=" + encodeURIComponent(author) +
+    "&price=" + encodeURIComponent(price);
+
+  xhr.send(params);
+}
+
+
+
+
+
+
 function addToCart(userId, book_name, author) {
   const xhr = new XMLHttpRequest();
   xhr.open("POST", "/iap-configurations/testf/addtoCart.php", true);

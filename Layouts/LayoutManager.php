@@ -58,6 +58,9 @@ class LayoutManager
                                         <a class="nav-link " href="?action=signup" id="signup-link">Sign up</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link " href="?action=admin" id="admin-link">Admin</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link " href="?action=browseBooks" id="browsebooks"><?php print "Browse books" ?></a>
                                     </li>
                                 </ul>
@@ -96,8 +99,11 @@ class LayoutManager
                                     case "signup":
                                         $signForm->signup();
                                         break;
+                                    case "admin":
+                                        $signForm->addBookToDataBase();
                                     default:
                                         $signForm->login();
+                                        // echo "Hello";
                                 }
                                 ?>
                             </div>

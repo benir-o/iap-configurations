@@ -161,6 +161,21 @@ class databaseOperations
             }
         }
     }
+    public function adminAddbookToDatabase()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            global $conn;
+            $_SESSION['book_name'] = $_POST['book_name'];
+            $_SESSION['author'] = $_POST['author'];
+            $_SESSION['book_price'] = $_POST['book_price'];
+            $addStmt = $conn->prepare("INSERT INTO book (book_name,author) VALUES (?,?)");
+            $addStmt->bind_param("ss", $_SESSION['book_name'], $_SESSION['author']);
+            $addStmt->execute();
+            if (!$addStmt->execute()) {
+                die("Execute failed: " . $addStmt->error);
+            }
+        }
+    }
 }
 $dbaseObject1 = new databaseOperations();
 if (isset($_POST['action'])) {
@@ -170,5 +185,7 @@ if (isset($_POST['action'])) {
         $dbaseObject1->displayUsers();
     } elseif ($_POST['action'] === 'passwordReset') {
         $dbaseObject1->passwordReset();
+    } elseif ($_POST['action'] === 'addBook') {
+        $dbaseObject1->adminAddbookToDatabase();
     }
 }
