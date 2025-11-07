@@ -28,11 +28,15 @@ class booksDisplay
                             <a class="nav-link " href="/iap-configurations/Global/logout.php" id="signout"><?php print "Sign Out" ?></a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/iap-configurations/Global/admin.html">Admin</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#categories">Categories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#about">About</a>
                         </li>
+
                     </ul>
                     <div class="cartitemsPage">
                         <button class="btn btn-light position-relative"

@@ -14,7 +14,7 @@ if (empty($book_name) || empty($author) || empty($price)) {
 try {
 
     $stmt = $conn->prepare("INSERT INTO book (book_name, author, book_price) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $book_name, $author, $price);
+    $stmt->bind_param("ssi", $book_name, $author, $price);
     $stmt->execute();
 
     echo json_encode(["success" => true, "message" => "Book added successfully!"]);

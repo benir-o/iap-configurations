@@ -77,15 +77,15 @@ class forms
                 <h2>Add Books</h2>
                 <div class="mb-3">
                     <label for="bookName">Book Name:</label>
-                    <input type="text" id="bookName" name="book_name" class="form-control" placeholder="Add a Book" aria-label="addabook" aria-describedby="basic-addon1">
+                    <input type="text" id="bookName" name="book_name" class="form-control" placeholder="Add a Book" aria-label="addabook" aria-describedby="basic-addon1" autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label for="author">Author: </label>
-                    <input type="text" id="author" name="author" class="form-control" required aria-label="Book Author" aria-describedby="basic-addon1">
+                    <input type="text" id="author" name="author" class="form-control" required aria-label="Bookauthor" aria-describedby="basic-addon1" autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label for="author">Price: </label>
-                    <input type="text" id="price" name="book_price" class="form-control" required aria-label="Book Price" aria-describedby="basic-addon1">
+                    <input type="text" id="price" name="book_price" class="form-control" required aria-label="Bookprice" aria-describedby="basic-addon1" autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-primary" onclick="addBook()">

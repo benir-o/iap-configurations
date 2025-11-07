@@ -1,22 +1,25 @@
-function addBook() {
+function addBook(event) {
+  event.preventdefault();
   const bookName = document.getElementById("bookName").value.trim();
   const author = document.getElementById("author").value.trim();
-  const price = document.getElementById("price").value.trim();
+  const price = parseFloat(document.getElementById("price").value.trim());
   const messageDiv = document.getElementById("message");
 
-  if (!bookName || !author || !price) {
+  if (!bookName || !author || isNaN(price)) {
     messageDiv.innerHTML = `<div class="alert alert-warning">All fields are required.</div>`;
     return;
   }
+  console.log('Before AJAX');
 
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "/iap-configuration/addBook.php", true);
+  xhr.open("POST", "/iap-configurations/testf/addBook.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       try {
         const response = JSON.parse(xhr.responseText);
+        console.log("During Ajax");
         if (response.success) {
           messageDiv.innerHTML = `<div class="alert alert-success">${response.message}</div>`;
           document.getElementById("addBookForm").reset();
@@ -30,9 +33,9 @@ function addBook() {
   };
 
   const params =
-    "book_name=" + encodeURIComponent(bookName) +
-    "&author=" + encodeURIComponent(author) +
-    "&price=" + encodeURIComponent(price);
+    "book_name=" +encodeURIComponent(bookName) +
+    "&author=" +encodeURIComponent(author)+
+    "&price=" +encodeURIComponent(price);
 
   xhr.send(params);
 }

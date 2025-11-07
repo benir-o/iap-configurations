@@ -4,14 +4,12 @@ class LayoutManager
 {
 
     private $action;
-    private $page;
     private $myBook;
     function __construct()
     {
         $this->action = isset($_GET['action']) ? $_GET['action'] : 'home';
         $this->myBook = new booksDisplay();
     }
-
 
     public function header($conf)
     {
@@ -58,9 +56,6 @@ class LayoutManager
                                         <a class="nav-link " href="?action=signup" id="signup-link">Sign up</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="?action=admin" id="admin-link">Admin</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a class="nav-link " href="?action=browseBooks" id="browsebooks"><?php print "Browse books" ?></a>
                                     </li>
                                 </ul>
@@ -99,8 +94,6 @@ class LayoutManager
                                     case "signup":
                                         $signForm->signup();
                                         break;
-                                    case "admin":
-                                        $signForm->addBookToDataBase();
                                     default:
                                         $signForm->login();
                                         // echo "Hello";
@@ -140,22 +133,25 @@ class LayoutManager
                         $this->myBook->subscribeSection();
                         ?>
                     </section>
-                <?
+                <?php
             }
 
             public function footer($conf)
-            {
+            { ?>
 
-                ?>
                     <footer class="pt-3 mt-4 text-body-secondary border-top">
                         <p>Copyright &copy; <?php
                                             echo date("Y"); ?> <?php print "The Good BookStore"; ?> - All Rights Reserved</p>
                     </footer>
+
                 </div>
             </main>
             <script src="/iap-configurations/testf/main.js"></script>
-            <script src="<?php echo $conf['site_url']; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
         </body>
+
+        <!-- <script src="/iap-configurations/testf/main.js"></script> -->
 
         </html>
 <?php
