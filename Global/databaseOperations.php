@@ -71,7 +71,7 @@ class databaseOperations
     public function displayUsers()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            global $conn;
+            global $conn, $conf;
             $_SESSION['username1'] = $_POST['username'];
             $_SESSION['password1'] = $_POST['password'];
             $GLOBALS['user_data_retrieval'] = array(
@@ -86,21 +86,17 @@ class databaseOperations
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
-
-                    $this->showHomepage();
+                    $this->layout1->header($conf);
+                    $this->layout1->homePageContent();
                 } else {
                     echo "<script>alert('Invalid username or Password');window.location.href = '/iap-configurations/index.php'</script>";
                 }
             } catch (Exception $e) {
                 echo "Error: " . $e->getMessage();
             }
+            header("Location: /iap-configurations/Global/admin.html");
+            exit;
         }
-    }
-    private function showHomePage()
-    {
-        global $conf;
-        $this->layout1->header($conf);
-        $this->layout1->homePageContent();
     }
     public function authenticateUser()
     {

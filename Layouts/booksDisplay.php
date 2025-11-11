@@ -19,9 +19,6 @@ class booksDisplay
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#home">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#books">Books</a>
                         </li>
                         <li class="nav-item">
@@ -33,19 +30,12 @@ class booksDisplay
                         <li class="nav-item">
                             <a class="nav-link" href="#categories">Categories</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
-                        </li>
-
                     </ul>
                     <div class="cartitemsPage">
                         <button class="btn btn-light position-relative"
                             onclick="goToCart(1)">
                             <!-- Cart -->
                             <i class="bi bi-cart-plus"></i> <!-- Add to cart -->
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">
-                                0
-                            </span>
                         </button>
                     </div>
                 </div>
@@ -162,7 +152,7 @@ class booksDisplay
                                 <span class="ms-1 text-muted">4.2</span>
                             </div>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$14.99</span>
+                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">Ksh. 1000</span>
                                 <button class="btn btn-outline-primary btn-sm"
                                     onclick="addToCart(1,'The Silent Patient','Alex Michaelides')">
                                     <i class="bi bi-cart-plus"></i>
@@ -187,7 +177,7 @@ class booksDisplay
                                 <span class="ms-1 text-muted">4.8</span>
                             </div>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$18.99</span>
+                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">Ksh. 1700</span>
                                 <button class="btn btn-outline-primary btn-sm"
                                     onclick="addToCart(1,'Atomic Habits','James Clear')">
                                     <i class="bi bi-cart-plus"></i>
@@ -212,7 +202,7 @@ class booksDisplay
                                 <span class="ms-1 text-muted">4.5</span>
                             </div>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$16.99</span>
+                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">Ksh. 1499</span>
                                 <button class="btn btn-outline-primary btn-sm"
                                     onclick="addToCart(1,'The Seven Husbands','Taylor Jenkins Reid')">
                                     <i class="bi bi-cart-plus"></i>
@@ -237,7 +227,7 @@ class booksDisplay
                                 <span class="ms-1 text-muted">4.3</span>
                             </div>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$19.99</span>
+                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">Ksh. 3000</span>
                                 <button class="btn btn-outline-primary btn-sm"
                                     onclick="addToCart(1,'Dune','Frank Herbert')">
                                     <i class="bi bi-cart-plus"></i>
@@ -263,7 +253,7 @@ class booksDisplay
                                 <span class="ms-1 text-muted">4.7</span>
                             </div>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$15.99</span>
+                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">Ksh. 1399</span>
                                 <button class="btn btn-outline-primary btn-sm"
                                     onclick="addToCart(1,'The Psychology of Money','Morgan Housel')">
                                     <i class="bi bi-cart-plus"></i>
@@ -289,7 +279,7 @@ class booksDisplay
                                 <span class="ms-1 text-muted">4.4</span>
                             </div>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$17.99</span>
+                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">Ksh. 1399</span>
                                 <button class="btn btn-outline-primary btn-sm"
                                     onclick="addToCart(1,'The Midnight Library','Matt Haig')">
                                     <i class="bi bi-cart-plus"></i>
@@ -315,7 +305,7 @@ class booksDisplay
                                 <span class="ms-1 text-muted">4.9</span>
                             </div>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$21.99</span>
+                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">Ksh. 3500</span>
                                 <button class="btn btn-outline-primary btn-sm"
                                     onclick="addToCart(1,'Project Hail Mary','Andy Weir')">
                                     <i class="bi bi-cart-plus"></i>
@@ -341,7 +331,7 @@ class booksDisplay
                                 <span class="ms-1 text-muted">4.1</span>
                             </div>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$13.99</span>
+                                <span class="badge bg-danger rounded-pill px-3 py-2 fs-6">$Ksh. 1500</span>
                                 <button class="btn btn-outline-primary btn-sm add-to-cart-btn"
                                     onclick="addToCart(1,'The Thursday Murder Club','Richard Osman')">
                                     <i class="bi bi-cart-plus"></i>

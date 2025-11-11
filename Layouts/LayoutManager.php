@@ -133,6 +133,7 @@ class LayoutManager
                         $this->myBook->subscribeSection();
                         ?>
                     </section>
+                    <script src="/iap-configurations/testf/mainlogic.js"></script>
                 <?php
             }
 
@@ -146,11 +147,13 @@ class LayoutManager
 
                 </div>
             </main>
-            <script src="/iap-configurations/testf/main.js"></script>
+
+
 
 
         </body>
 
+        <script src="/iap-configurations/testf/mainlogic.js"></script>
         <!-- <script src="/iap-configurations/testf/main.js"></script> -->
 
         </html>
