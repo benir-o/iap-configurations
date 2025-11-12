@@ -154,7 +154,7 @@ class LayoutManager
         </body>
 
         <script src="/iap-configurations/testf/mainlogic.js"></script>
-        <!-- <script src="/iap-configurations/testf/main.js"></script> -->
+
 
         </html>
 <?php
