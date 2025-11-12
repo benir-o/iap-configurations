@@ -38,7 +38,7 @@ class sendMail
                 $mail->Subject = $mailCnt['subject'];
                 $mail->Body    = 'Hello ' .
                     $GLOBALS['user_data']['name'] .
-                    ", Welcome to The Goof Bookstore Kenya<br>Your Verification code is <strong>" .
+                    ", Welcome to The Good Bookstore Kenya<br>Your Verification code is <strong>" .
                     $GLOBALS['user_data']['verification_code'] . "</strong>";
 
 
