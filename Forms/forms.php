@@ -47,8 +47,8 @@ class forms
                 <h2>Sign in</h2>
                 <p>Glad to see you back.</p>
                 <div class="mb-3">
-                    <label for="username">Username: </label>
-                    <input type="text" id="username" name="username" class="form-control" required>
+                    <label for="username">Email: </label>
+                    <input type="text" id="email" name="email1" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label for="password">Password:</label>

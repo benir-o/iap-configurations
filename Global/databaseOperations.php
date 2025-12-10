@@ -72,7 +72,7 @@ class databaseOperations
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             global $conn, $conf;
-            $_SESSION['username1'] = $_POST['username'];
+            $_SESSION['email1'] = $_POST['email1'];
             $_SESSION['password1'] = $_POST['password'];
             $GLOBALS['user_data_retrieval'] = array(
                 'name' => $_SESSION['username1'],
@@ -80,8 +80,8 @@ class databaseOperations
             );
 
             try {
-                $stmt = $conn->prepare("SELECT username, email FROM bookstore_users WHERE username=? AND user_password=?");
-                $stmt->bind_param('ss', $_SESSION['username1'], $_SESSION['password1']);
+                $stmt = $conn->prepare("SELECT email FROM bookstore_users WHERE email=? AND user_password=?");
+                $stmt->bind_param('ss', $_SESSION['email1'], $_SESSION['password1']);
                 $stmt->execute();
                 $result = $stmt->get_result();
 
